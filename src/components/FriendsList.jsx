@@ -2,7 +2,7 @@ import Friend from "./Friend";
 
 function FriendsList({ friends }) {
     return (
-        <ul className="FriendsList">
+        <ul>
             {friends.map((friend) => (
                 <Friend friend={friend} key={friend.id} />
             ))}

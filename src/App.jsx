@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import FriendsList from "./components/FriendsList";
+import FormAddFriend from "./components/FormAddFriend";
+import Button from "./components/Button";
+import FormSplitBill from "./components/FormSplitBill";
 
 const initialFriends = [
     {
@@ -24,11 +27,24 @@ const initialFriends = [
 ];
 
 function App() {
+    const [addFriendOpen, setAddFriendOpen] = useState(false);
+    const [friendList, setFriendList] = useState(initialFriends);
+
+    function toggleAddFriendOpen() {
+        setAddFriendOpen((addFriendOpen) => !addFriendOpen);
+    }
+
     return (
-        <div className="App">
+        <div className="app">
             <div className="sidebar">
-                <FriendsList friends={initialFriends} />
+                <FriendsList friends={friendList} />
+                {addFriendOpen && <FormAddFriend />}
+                <Button toggleAddFriendOpen={toggleAddFriendOpen}>
+                    {addFriendOpen ? "close" : "Add friend"}
+                </Button>
             </div>
+
+            <FormSplitBill />
         </div>
     );
 }
