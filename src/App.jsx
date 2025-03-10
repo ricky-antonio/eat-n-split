@@ -34,12 +34,19 @@ function App() {
         setAddFriendOpen((addFriendOpen) => !addFriendOpen);
     }
 
+    function handleAddFriend(newFriend) {
+        setFriendList((curFriends) => [...curFriends, newFriend]);
+        setAddFriendOpen(false);
+    }
+
     return (
         <div className="app">
             <div className="sidebar">
                 <FriendsList friends={friendList} />
-                {addFriendOpen && <FormAddFriend />}
-                <Button toggleAddFriendOpen={toggleAddFriendOpen}>
+                {addFriendOpen && (
+                    <FormAddFriend onAddFriend={handleAddFriend} />
+                )}
+                <Button onClick={toggleAddFriendOpen}>
                     {addFriendOpen ? "close" : "Add friend"}
                 </Button>
             </div>
